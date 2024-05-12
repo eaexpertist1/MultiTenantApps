@@ -1,0 +1,41 @@
+﻿@model List<ListOfProduct>
+
+@{
+    ViewData["Title"] = "List Of Products";
+}
+
+<h2>List Of Products (based on country)</h2>
+
+<br />
+<br />
+
+
+@if (Model != null && Model.Any())
+{
+    <table class="table table-bordered">
+        <thead>
+            <tr class="bg-success">
+                <th>Product Name</th>
+                <th>No. Sold</th>
+                <th>No. Of Orders</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var order in Model)
+            {
+                <tr>
+                    <td>@order.ProductName</td>
+                    <td>@order.NoSold</td>
+                    <td>@order.NoOfOrder</td>
+                    
+
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No orders found.</p>
+}

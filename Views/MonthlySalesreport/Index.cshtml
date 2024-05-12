@@ -1,0 +1,42 @@
+﻿@model List<MonthlyReport>
+@using System.Globalization;
+
+@{
+    ViewData["Title"] = "Monthly Sales Report";
+}
+
+<h2>Monthly Sales Report (based on order date)</h2>
+
+<br />
+<br />
+
+
+@if (Model != null && Model.Any())
+{
+    <table class="table table-bordered">
+        <thead>
+            <tr class="bg-success">
+                <th>Month</th>
+                <th>Total Orders</th>
+                <th>Total Revenue</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var order in Model)
+            {
+                <tr>
+                    <td>@order.Month</td>
+                    <td>@order.TotalOrders</td>
+                    <td>@order.TotalRevenue.ToString("C", CultureInfo.GetCultureInfo("en-US"))</td>
+                    
+
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No orders found.</p>
+}

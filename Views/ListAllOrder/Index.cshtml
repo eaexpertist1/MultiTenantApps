@@ -1,0 +1,42 @@
+﻿@model List<ListAllOrderModel>
+@using System.Globalization;
+
+@{
+    ViewData["Title"] = "List Orders";
+}
+
+<h2>List all orders for the tenants (based on country)</h2>
+
+<br />
+<br />
+ 
+
+@if (Model != null && Model.Any())
+{
+    <table class="table table-bordered">
+        <thead>
+            <tr class="bg-success">
+                <th>Order ID</th>
+                <th>Order Date</th>
+                <th>Customer Name</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var order in Model)
+            {
+                <tr>
+                    <td>@order.OrderId</td>
+                    <td>@Convert.ToDateTime(order.OrderDate).ToString("dd MMMM yyyy")</td>
+                    <td>@order.CustomerName</td>
+                    <td>@order.Total.ToString("C", CultureInfo.GetCultureInfo("en-US"))</td>
+                    
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No orders found.</p>
+}
